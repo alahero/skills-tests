@@ -1,0 +1,2 @@
+# Excluir skills de Cursor del bundle de Vercel (solo hace falta skill-tests + raíz).
+.cursor
