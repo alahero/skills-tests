@@ -1,0 +1,87 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+
+  --color-club-void: #120817;
+  --color-club-deep: #1b0b2e;
+  --color-club-plum: #2a0f33;
+  --color-club-burnt: #c84d1b;
+  --color-club-orange: #e85d1c;
+  --color-club-amber: #ff9f1c;
+  --color-club-accent: #ffe45e;
+  --color-club-muted: rgba(255, 255, 255, 0.72);
+}
+
+@layer base {
+  html {
+    scroll-behavior: auto;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    background-color: var(--color-club-void);
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(255, 159, 28, 0.35);
+    color: #fff;
+  }
+}
+
+/* Textura de grano fija: no bloquea interacción y evita repintes en scroll */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+.eq-bars span {
+  display: block;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffe45e, #ff9f1c);
+  transform-origin: bottom center;
+  animation: eq 0.85s ease-in-out infinite alternate;
+}
+
+.eq-bars span:nth-child(1) {
+  animation-delay: 0ms;
+}
+.eq-bars span:nth-child(2) {
+  animation-delay: 120ms;
+}
+.eq-bars span:nth-child(3) {
+  animation-delay: 240ms;
+}
+.eq-bars span:nth-child(4) {
+  animation-delay: 90ms;
+}
+.eq-bars span:nth-child(5) {
+  animation-delay: 200ms;
+}
+
+@keyframes eq {
+  from {
+    transform: scaleY(0.22);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq-bars span {
+    animation: none !important;
+  }
+}

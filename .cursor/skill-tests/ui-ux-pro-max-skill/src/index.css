@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 min-h-svh overflow-x-hidden bg-night font-sans text-white antialiased;
+    touch-action: manipulation;
+  }
+
+  ::selection {
+    @apply bg-amber/40 text-white;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-glow;
+  }
+}
+
+/* Texto editorial largo: justificado en escritorio, alineado al inicio en móvil */
+.editorial-justificado {
+  text-align: justify;
+  hyphens: manual;
+  -webkit-hyphens: manual;
+}
+
+@media (max-width: 640px) {
+  .editorial-justificado {
+    text-align: start;
+  }
+}
+
+@keyframes eqBar {
+  0%,
+  100% {
+    transform: scaleY(0.28);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.eq-bar {
+  transform-origin: bottom;
+  animation: eqBar 1s ease-in-out infinite;
+}

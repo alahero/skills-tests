@@ -1,0 +1,15 @@
+# Dependencias (regenerables con npm install)
+node_modules/
+
+# Repositorios Git anidados bajo skills (no mezclar su historial en este remoto)
+.cursor/skills/**/.git/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+*.log
+
+# Entorno local
+.env
+.env.*
+!.env.example

@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+
+  --color-night-950: #120817;
+  --color-night-900: #1b0b2e;
+  --color-night-800: #2a0f33;
+  --color-sunset-burnt: #c84d1b;
+  --color-sunset-deep: #e85d1c;
+  --color-sunset-amber: #ff9f1c;
+  --color-accent-yellow: #ffe45e;
+  --color-muted: rgb(255 255 255 / 0.72);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 min-h-svh overflow-x-hidden bg-night-950 font-sans text-white antialiased;
+  }
+
+  #root {
+    @apply min-h-svh w-full max-w-none overflow-x-hidden;
+  }
+}
+
+/* Textura de grano sutil para atmósfera cinematográfica */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes eqPulse {
+  from {
+    transform: scaleY(0.35);
+    opacity: 0.5;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.eq-bar {
+  animation: eqPulse 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes sunBreathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.sun-breathe {
+  animation: sunBreathe 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    opacity: 0.32;
+  }
+  to {
+    opacity: 0.52;
+  }
+}
+
+.glow-drift {
+  animation: glowPulse 3.2s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .eq-bar {
+    animation: none;
+    transform: scaleY(0.65);
+    opacity: 0.75;
+  }
+
+  .sun-breathe,
+  .glow-drift {
+    animation: none;
+  }
+
+  .glow-drift {
+    opacity: 0.4;
+  }
+}
